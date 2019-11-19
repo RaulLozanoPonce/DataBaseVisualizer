@@ -1,5 +1,6 @@
 package databasevisualizer;
 
+import java.awt.Toolkit;
 import java.io.IOException;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -61,7 +62,7 @@ public class DataBaseVisualizer extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         columnList = new javax.swing.JList<>();
         menuBar = new javax.swing.JMenuBar();
-        conectionMenu = new javax.swing.JMenu();
+        connectionMenu = new javax.swing.JMenu();
         loginMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -192,33 +193,40 @@ public class DataBaseVisualizer extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        conectionMenu.setText("Conexión");
+        connectionMenu.setText("Conexión");
 
+        loginMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        loginMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Photos/login.png"))); // NOI18N
         loginMenuItem.setText("Iniciar Sesión");
         loginMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginMenuItemActionPerformed(evt);
             }
         });
-        conectionMenu.add(loginMenuItem);
-        conectionMenu.add(jSeparator1);
+        connectionMenu.add(loginMenuItem);
+        connectionMenu.add(jSeparator1);
 
+        exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        exitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Photos/Exit.png"))); // NOI18N
         exitMenuItem.setText("Salir");
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
             }
         });
-        conectionMenu.add(exitMenuItem);
+        connectionMenu.add(exitMenuItem);
 
-        menuBar.add(conectionMenu);
+        menuBar.add(connectionMenu);
 
         editMenu.setText("Editar");
 
-        selectionModeMenu.setText("Modo de Seleccíon");
+        selectionModeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Photos/select.png"))); // NOI18N
+        selectionModeMenu.setText("Modo de Selección");
 
+        singleIntervalMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         singleIntervalMenuItem.setSelected(true);
         singleIntervalMenuItem.setText("Un Intervalo");
+        singleIntervalMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Photos/multy.png"))); // NOI18N
         singleIntervalMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 singleIntervalMenuItemActionPerformed(evt);
@@ -226,8 +234,10 @@ public class DataBaseVisualizer extends javax.swing.JFrame {
         });
         selectionModeMenu.add(singleIntervalMenuItem);
 
+        multipleIntervalMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
         multipleIntervalMenuItem.setSelected(true);
         multipleIntervalMenuItem.setText("Muchos Intervalos");
+        multipleIntervalMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Photos/infi.png"))); // NOI18N
         multipleIntervalMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 multipleIntervalMenuItemActionPerformed(evt);
@@ -235,8 +245,10 @@ public class DataBaseVisualizer extends javax.swing.JFrame {
         });
         selectionModeMenu.add(multipleIntervalMenuItem);
 
+        singleSelectionMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         singleSelectionMenuItem.setSelected(true);
         singleSelectionMenuItem.setText("Uno a Uno");
+        singleSelectionMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Photos/one.png"))); // NOI18N
         singleSelectionMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 singleSelectionMenuItemActionPerformed(evt);
@@ -250,6 +262,8 @@ public class DataBaseVisualizer extends javax.swing.JFrame {
 
         helpMenu.setText("Ayuda");
 
+        infoMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        infoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Photos/Info_App.png"))); // NOI18N
         infoMenuItem.setText("Info.");
         infoMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,6 +273,8 @@ public class DataBaseVisualizer extends javax.swing.JFrame {
         helpMenu.add(infoMenuItem);
         helpMenu.add(jSeparator2);
 
+        aboutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Photos/Help_App.png"))); // NOI18N
         aboutMenuItem.setText("Acerca De");
         aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,12 +308,11 @@ public class DataBaseVisualizer extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(loginButton)
-                            .addGap(18, 18, 18)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(loginButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -338,7 +353,7 @@ public class DataBaseVisualizer extends javax.swing.JFrame {
     }//GEN-LAST:event_singleSelectionButtonActionPerformed
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-        JOptionPane.showMessageDialog(null, "Diseñado por:\n ➡ Raúl Lozano Ponce\n ➡ Pablo Perdomo Falcón", "Acerca De MultiPhotoEditor", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Diseñado por:\n ➡ Raúl Lozano Ponce\n ➡ Pablo Perdomo Falcón", "Acerca de DataBaseVisualizer", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
@@ -385,12 +400,22 @@ public class DataBaseVisualizer extends javax.swing.JFrame {
     private void setApp(){
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setMinimumSize(getPreferredSize());
-        //setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Photos/Logo.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Photos/Logo.png")));
         setTitle("DataBaseVisualizer");
     }
     
     private void setMnemonic() {
-        //fileMenu.setMnemonic('A');
+        connectionMenu.setMnemonic('C');
+        editMenu.setMnemonic('E');
+        helpMenu.setMnemonic('U');
+        loginMenuItem.setMnemonic('I');
+        exitMenuItem.setMnemonic('S');
+        selectionModeMenu.setMnemonic('M');
+        singleIntervalMenuItem.setMnemonic('I');
+        multipleIntervalMenuItem.setMnemonic('M');
+        singleSelectionMenuItem.setMnemonic('U');
+        infoMenuItem.setMnemonic('I');
+        aboutMenuItem.setMnemonic('A');
     }
     
     private void login() {
@@ -476,7 +501,7 @@ public class DataBaseVisualizer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JList<String> columnList;
-    private javax.swing.JMenu conectionMenu;
+    private javax.swing.JMenu connectionMenu;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu helpMenu;
